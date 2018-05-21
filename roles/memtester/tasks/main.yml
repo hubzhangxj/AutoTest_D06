@@ -1,0 +1,32 @@
+---
+# tasks file for memtester/
+- name: copy  binary executable file
+  copy: src=memtester dest=/usr/local/bin mode=0755
+
+- name: copy  binary executable file
+  copy: src=memtest.sh dest=/tmp mode=0755
+
+
+- name: remove latest data
+  file:
+    path: /tmp/memtest_output.log
+    state: absent
+
+- name: Memory Test
+  shell: "/tmp/memtest.sh"
+  register: logdata
+  ignore_errors: yes
+
+- lineinfile: create=yes dest=/tmp/memtest_output.log line="{{ logdata.stdout }}" state=present
+
+- name: fetch memtest result
+  fetch:
+    src: /tmp/memtest_output.log
+    dest: /tmp/memtest_output.log
+    flat: yes
+
+
+
+
+
+

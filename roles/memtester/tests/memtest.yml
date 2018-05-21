@@ -1,0 +1,13 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+########################################################################################################
+####memtester test ok
+#######################################################################################################
+
+- name: run mem test on loalhost
+  hosts: memtest
+  remote_user: root
+  roles:
+    - ../../memtest
+

@@ -1,0 +1,71 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+########################################################################################################
+####memtester test ok
+#######################################################################################################
+
+- name: run sata test on loalhost
+  hosts: sata 
+  remote_user: root
+  roles:
+    - sata
+
+########################################################################################################
+####memtester test ok
+#######################################################################################################
+
+#- name: run memory test on loalhost
+#  hosts: memtest 
+#  remote_user: root
+#  roles:
+#    - memtester
+
+#######################################################################################################
+
+
+
+########################################################################################################
+####iperf test ok
+#######################################################################################################
+
+#- name: run iperf on Server
+#  hosts: server
+#  roles:
+#    - { role: iperf, run_server: true }
+#
+#- name: run iperf on Client
+#  hosts: client
+#  tasks:
+#    - name: remove latest data
+#      file:
+#        path: /tmp/iperf_output.log
+#        state: absent
+#
+#    - name:  Bandwidth Test => Running single thread test
+#      shell: "iperf -c {{ server }} -f M -i 3 -t 60 -P 3"
+#      register: logdata
+#      ignore_errors: yes
+#
+#    - lineinfile: create=yes dest=/tmp/iperf_output.log line="{{ logdata.stdout }}" state=present
+#
+#    - name: fetch result
+#      fetch:
+#        src: /tmp/iperf_output.log
+#        dest: /tmp/iperf_output.log
+#        flat: yes
+#
+#- name: stop iperf on server
+#  hosts: server
+#  tasks:
+#    - name: stop server
+#      shell: killall iperf
+#      ignore_errors: yes
+
+#############################################################################################################
+
+
+
+
+
+

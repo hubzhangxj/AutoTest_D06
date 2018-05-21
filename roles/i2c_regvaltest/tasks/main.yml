@@ -1,0 +1,26 @@
+---
+# tasks file for rtc/
+- name: copy  binary executable file
+  copy: src=rtc.sh dest=/tmp mode=0755
+
+- name: remove latest data
+  file:
+    path: /tmp/rtc_output.log
+    state: absent
+
+- name: Sata mount read checksum umount Test
+  shell: "./rtc.sh"
+  args:
+    chdir: /tmp 
+          
+  register: logdata
+  ignore_errors: yes
+
+- lineinfile: create=yes dest=/tmp/rtc_output.log line="{{ logdata.stdout }}" state=present
+
+- name: fetch sata result
+  fetch:
+    src: /tmp/rtc_output.log
+    dest: /tmp/rtc_output.log
+    flat: yes
+

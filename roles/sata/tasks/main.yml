@@ -1,0 +1,32 @@
+---
+# tasks file for sata/
+- name: copy  binary executable file
+  copy: src=300.ltp.tar dest=/tmp mode=0755
+
+- name: copy  binary executable file
+  copy: src=sata.sh dest=/tmp mode=0755
+
+- name: remove latest data
+  file:
+    path: /tmp/sata_output.log
+    state: absent
+
+- name: Sata mount read checksum umount Test
+  shell: "./sata.sh"
+  args:
+    chdir: /tmp 
+          
+  register: logdata
+  ignore_errors: yes
+
+- lineinfile: create=yes dest=/tmp/sata_output.log line="{{ logdata.stdout }}" state=present
+
+- name: fetch sata result
+  fetch:
+    src: /tmp/sata_output.log
+    dest: /tmp/sata_output.log
+    flat: yes
+- name: test hostvars
+  debug: var=hostvars[inventory_hostname]
+
+

@@ -1,0 +1,13 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+########################################################################################################
+####memtester test ok
+#######################################################################################################
+
+- name: run sata test on loalhost
+  hosts: sata
+  remote_user: root
+  roles:
+    - ../../sata
+

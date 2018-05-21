@@ -1,0 +1,25 @@
+
+[sata]
+192.168.1.159 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root" 
+
+[memtest]
+192.168.1.159 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root"
+
+[uart]
+192.168.1.159 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root"
+
+[net_ge1server]
+192.168.1.159 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root" 
+
+[net_ge2server]
+192.168.1.159 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root" 
+
+[net_ge2client]
+192.168.1.102 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root" 
+
+[net_ge1client]
+192.168.1.102 ansible_ssh_user=root ansible_ssh_pass="root" ansible_sudo_pass="root" 
+
+
+
+

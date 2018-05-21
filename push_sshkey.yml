@@ -1,0 +1,10 @@
+- hosts: '{{ hosts }}'
+  remote_user: root
+  become: yes
+  tasks:
+    - name: deliver authorized_keys
+      authorized_key: 
+        user: root
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        state: present
+        exclusive: yes
